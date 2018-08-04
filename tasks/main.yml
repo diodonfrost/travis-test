@@ -1,0 +1,46 @@
+---
+# tasks file for main
+
+- import_tasks: audit.yml
+  tags:
+    - audit
+
+- import_tasks: filesystem.yml
+  tags:
+    - filesystem
+
+- import_tasks: firewalld.yml
+  tags:
+    - firewalld
+
+- import_tasks: kernel.yml
+  tags:
+    - kernel
+
+- import_tasks: packages.yml
+  tags:
+    - packages
+
+- import_tasks: pam.yml
+  tags:
+    - pam
+
+- import_tasks: selinux.yml
+  tags:
+    - selinux
+
+- import_tasks: services/aide.yml
+  tags:
+    - aide
+
+- import_tasks: services/ntp.yml
+  tags:
+    - ntp
+
+- import_tasks: services/sshd.yml
+  tags:
+    - sshd
+
+- import_tasks: update_system.yml
+  tags:
+    - update_system

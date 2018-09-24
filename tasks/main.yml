@@ -1,46 +1,18 @@
 ---
-# tasks file for main
+# tasks file for ansible-role-mariadb
 
-- import_tasks: audit.yml
-  tags:
-    - audit
+- name: Include OS specific variables.
+  include_vars: "{{ ansible_distribution }}.yml"
 
-- import_tasks: filesystem.yml
-  tags:
-    - filesystem
+- name: Install Mariadb
+  include_tasks: "repository/install-os.yml"
+  when: mariadb_install == true
 
-- import_tasks: firewalld.yml
-  tags:
-    - firewalld
+- name: Ensure Mariadb configfile are present
+  include_tasks: "config/template-config.yml"
 
-- import_tasks: kernel.yml
-  tags:
-    - kernel
+- name: Ensure Mariadb database are present
+  include_tasks: "database/databases.yml"
 
-- import_tasks: packages.yml
-  tags:
-    - packages
-
-- import_tasks: pam.yml
-  tags:
-    - pam
-
-- import_tasks: selinux.yml
-  tags:
-    - selinux
-
-- import_tasks: services/aide.yml
-  tags:
-    - aide
-
-- import_tasks: services/ntp.yml
-  tags:
-    - ntp
-
-- import_tasks: services/sshd.yml
-  tags:
-    - sshd
-
-- import_tasks: update_system.yml
-  tags:
-    - update_system
+- name: Add Mariadb users are present
+  include_tasks: "database/users.yml"

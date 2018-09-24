@@ -5,7 +5,7 @@ mariadb_packages:
   - MySQL-python
 
 mariadb_service: '{{ "mariadb"
-                     if (ansible_distribution_major_version == "7")
+                     if (ansible_distribution_major_version == "7" and mariadb_version int >= 10.1 )
                      else "mysql" }}'
 
 mariadb_config_file: /etc/my.cnf.d/server.cnf

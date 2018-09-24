@@ -3,8 +3,8 @@ services:
   - docker
 
 mariadb_version:
-  - "10.3"
-  - "10.2"
+  - mariadb_version: "10.3"
+  - mariadb_version: "10.2"
 
 env:
   - distribution: centos

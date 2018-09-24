@@ -2,7 +2,7 @@
 services:
   - docker
 
-mariadb_version:
+env:
   - mariadb_version: "10.3"
   - mariadb_version: "10.2"
 

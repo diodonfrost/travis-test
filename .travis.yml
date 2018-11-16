@@ -1,4 +1,5 @@
 ---
+sudo: false
 services:
   - docker
 
@@ -57,16 +58,15 @@ script:
   # Docker ps
   - 'docker ps -a'
 
-after_success:
-  jobs:
-    include:
-      - stage: push
-        script:
-          # Login on dockerhub.io before pushing
-          - 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
+jobs:
+  include:
+    - stage: push
+      script:
+        # Login on dockerhub.io before pushing
+        - 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
 
-          # Pushing image to dockerhub
-          - 'docker push diodonfrost/${distribution}-${version}-ansible:latest'
+        # Pushing image to dockerhub
+        - 'docker push diodonfrost/${distribution}-${version}-ansible:latest'
 
-          # Delete container
-          - 'sudo docker rm -f "$(cat ${container_id})"'
+        # Delete container
+        - 'sudo docker rm -f "$(cat ${container_id})"'

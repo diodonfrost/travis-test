@@ -1,0 +1,7 @@
+---
+- name: diodonfrost.puppet_agent
+- name: diodonfrost.java
+- name: diodonfrost.haproxy
+- name: diodonfrost.logrotate
+- name: diodonfrost.mariadb
+- name: diodonfrost.ssh_hardening

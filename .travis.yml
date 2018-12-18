@@ -49,7 +49,7 @@ env:
 
 before_install:
   - 'sudo docker build --no-cache --rm --file=${distribution}-${version}-ansible/Dockerfile.${distribution}-${version} --tag=diodonfrost/${distribution}-${version}-ansible:latest .'
-  - 'apt-get update && apt-get install ansible'
+  - 'sudo apt-get update && sudo apt-get install ansible'
 script:
   - 'sudo ansible-galaxy install -r requirement.yml'
   - container_id=$(mktemp)

@@ -1,6 +1,6 @@
-# docker-ansible
+# travis-test
 
-[![Build Status](https://travis-ci.org/diodonfrost/docker-ansible.svg?branch=master)](https://travis-ci.org/diodonfrost/docker-ansible)
+[![Build Status](https://travis-ci.org/diodonfrost/travis-test.svg?branch=master)](https://travis-ci.org/diodonfrost/travis-test)
 [![Docker Automated build](https://img.shields.io/docker/automated/diodonfrost/centos-7-ansible.svg?maxAge=2592000)](https://hub.docker.com/r/diodonfrost/centos-7-ansible/)
 
 Provides dockerfiles with ansible and in some case systemd integration.
@@ -45,29 +45,29 @@ Provides docker containers use for testing ansible role on some operating system
 [Archlinux]: https://hub.docker.com/r/base/archlinux/
 [Gentoo]: https://hub.docker.com/r/gentoo/stage3-amd64/
 
-[centos-7-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/centos-7-ansible/Dockerfile.centos-7
-[centos-6-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/centos-6-ansible/Dockerfile.centos-6
-[fedora-29-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/fedora-29-ansible/Dockerfile.fedora-29
-[fedora-28-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/fedora-28-ansible/Dockerfile.fedora-28
-[fedora-27-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/fedora-27-ansible/Dockerfile.fedora-27
-[fedora-26-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/fedora-26-ansible/Dockerfile.fedora-28
-[ubuntu-18.04-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/ubuntu-18.04-ansible/Dockerfile.ubuntu-18.04
-[ubuntu-17.10-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/ubuntu-17.10-ansible/Dockerfile.ubuntu-17.10
-[ubuntu-16.04-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/ubuntu-16.04-ansible/Dockerfile.ubuntu-16.04
-[ubuntu-14.04-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/ubuntu-14.04-ansible/Dockerfile.ubuntu-14.04
-[ubuntu-12.04-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/ubuntu-12.04-ansible/Dockerfile.ubuntu-12.04
-[debian-9-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/debian-9-ansible/Dockerfile.debian-9
-[debian-8-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/debian-8-ansible/Dockerfile.debian-8
-[debian-7-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/debian-7-ansible/Dockerfile.debian-7
-[oraclelinux-7-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/oraclelinux-7-ansible/Dockerfile.oraclelinux-7
-[oraclelinux-6-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/oraclelinux-6-ansible/Dockerfile.oraclelinux-6
-[amazonlinux-2-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/amazonlinux-2-ansible/Dockerfile.amazonlinux-2
-[amazonlinux-1-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/amazonlinux-1-ansible/Dockerfile.amazonlinux-1
-[opensuse-42.3-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/opensuse-42.3-ansible/Dockerfile.opensuse-42.3
-[opensuse-42.2-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/opensuse-42.2-ansible/Dockerfile.opensuse-42.2
-[opensuse-13.2-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/opensuse-13.2-ansible/Dockerfile.opensuse-13.2
-[archlinux-rolling-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/archlinux-rolling-ansible/Dockerfile.archlinux-rolling
-[gentoo-stage3-ansible]: https://github.com/diodonfrost/docker-ansible/blob/master/gentoo-stage3-ansible/Dockerfile.gentoo-stage3
+[centos-7-ansible]: https://github.com/diodonfrost/travis-test/blob/master/centos-7-ansible/Dockerfile.centos-7
+[centos-6-ansible]: https://github.com/diodonfrost/travis-test/blob/master/centos-6-ansible/Dockerfile.centos-6
+[fedora-29-ansible]: https://github.com/diodonfrost/travis-test/blob/master/fedora-29-ansible/Dockerfile.fedora-29
+[fedora-28-ansible]: https://github.com/diodonfrost/travis-test/blob/master/fedora-28-ansible/Dockerfile.fedora-28
+[fedora-27-ansible]: https://github.com/diodonfrost/travis-test/blob/master/fedora-27-ansible/Dockerfile.fedora-27
+[fedora-26-ansible]: https://github.com/diodonfrost/travis-test/blob/master/fedora-26-ansible/Dockerfile.fedora-28
+[ubuntu-18.04-ansible]: https://github.com/diodonfrost/travis-test/blob/master/ubuntu-18.04-ansible/Dockerfile.ubuntu-18.04
+[ubuntu-17.10-ansible]: https://github.com/diodonfrost/travis-test/blob/master/ubuntu-17.10-ansible/Dockerfile.ubuntu-17.10
+[ubuntu-16.04-ansible]: https://github.com/diodonfrost/travis-test/blob/master/ubuntu-16.04-ansible/Dockerfile.ubuntu-16.04
+[ubuntu-14.04-ansible]: https://github.com/diodonfrost/travis-test/blob/master/ubuntu-14.04-ansible/Dockerfile.ubuntu-14.04
+[ubuntu-12.04-ansible]: https://github.com/diodonfrost/travis-test/blob/master/ubuntu-12.04-ansible/Dockerfile.ubuntu-12.04
+[debian-9-ansible]: https://github.com/diodonfrost/travis-test/blob/master/debian-9-ansible/Dockerfile.debian-9
+[debian-8-ansible]: https://github.com/diodonfrost/travis-test/blob/master/debian-8-ansible/Dockerfile.debian-8
+[debian-7-ansible]: https://github.com/diodonfrost/travis-test/blob/master/debian-7-ansible/Dockerfile.debian-7
+[oraclelinux-7-ansible]: https://github.com/diodonfrost/travis-test/blob/master/oraclelinux-7-ansible/Dockerfile.oraclelinux-7
+[oraclelinux-6-ansible]: https://github.com/diodonfrost/travis-test/blob/master/oraclelinux-6-ansible/Dockerfile.oraclelinux-6
+[amazonlinux-2-ansible]: https://github.com/diodonfrost/travis-test/blob/master/amazonlinux-2-ansible/Dockerfile.amazonlinux-2
+[amazonlinux-1-ansible]: https://github.com/diodonfrost/travis-test/blob/master/amazonlinux-1-ansible/Dockerfile.amazonlinux-1
+[opensuse-42.3-ansible]: https://github.com/diodonfrost/travis-test/blob/master/opensuse-42.3-ansible/Dockerfile.opensuse-42.3
+[opensuse-42.2-ansible]: https://github.com/diodonfrost/travis-test/blob/master/opensuse-42.2-ansible/Dockerfile.opensuse-42.2
+[opensuse-13.2-ansible]: https://github.com/diodonfrost/travis-test/blob/master/opensuse-13.2-ansible/Dockerfile.opensuse-13.2
+[archlinux-rolling-ansible]: https://github.com/diodonfrost/travis-test/blob/master/archlinux-rolling-ansible/Dockerfile.archlinux-rolling
+[gentoo-stage3-ansible]: https://github.com/diodonfrost/travis-test/blob/master/gentoo-stage3-ansible/Dockerfile.gentoo-stage3
 
 [diodonfrost/centos-7-ansible]: https://hub.docker.com/r/diodonfrost/centos-7-ansible
 [diodonfrost/centos-6-ansible]: https://hub.docker.com/r/diodonfrost/centos-6-ansible

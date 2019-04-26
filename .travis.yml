@@ -18,6 +18,13 @@ matrix:
           - distribution: centos
             version: "6"
             become: sudo
+      - os: linux
+        language: ruby
+        rvm: 2.5.1
+        env:
+          - distribution: debian
+            version: "9"
+            become: sudo
       - os: windows
         language: shell
         env:

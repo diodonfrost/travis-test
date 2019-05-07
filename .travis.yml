@@ -10,6 +10,9 @@ env:
 
 install:
   # Install the latest version of Packer with ansible
-  - sudo pip3 install ansible
+  - sudo pip install ansible
   - sudo ansible-galaxy install git+https://github.com/diodonfrost/ansible-role-packer
   - sudo ansible-pull -U https://github.com/diodonfrost/ansible-role-packer tests/test.yml
+
+before_script:
+  - packer --version

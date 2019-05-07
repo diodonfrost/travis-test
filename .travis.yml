@@ -1,42 +1,15 @@
----
-dist: xenial
-services:
-  - docker
+dist: xenial   # required for Python >= 3.7
+language: python
+python:
+  - "3.7"
 
-matrix:
-    include:
-      - os: linux
-        language: ruby
-        rvm: 2.5.1
-        env:
-          - distribution: centos
-            version: "7"
-            become: sudo
-      - os: linux
-        language: ruby
-        rvm: 2.5.1
-        env:
-          - distribution: centos
-            version: "6"
-            become: sudo
-      - os: linux
-        language: ruby
-        rvm: 2.5.1
-        env:
-          - distribution: debian
-            version: "9"
-            become: sudo
-      - os: windows
-        language: shell
-        env:
-          - distribution: nanoserver
-            version: "1809"
-            become: " "
+env:
+  - distribution: solaris
+    version: "10"
+    minor: "11"
 
-
-before_install:
-  - 'docker -v'
-
-script:
-  - container_id=$(mktemp)
-  - docker ps
+install:
+  # Install the latest version of Packer with ansible
+  - sudo pip3 install ansible
+  - sudo ansible-galaxy install git+https://github.com/diodonfrost/ansible-role-packer
+  - sudo ansible-pull -U https://github.com/diodonfrost/ansible-role-packer tests/test.yml

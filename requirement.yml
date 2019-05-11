@@ -1,6 +1,5 @@
 diodonfrost.puppet_agent
 diodonfrost.java
-diodonfrost.haproxy
-diodonfrost.logrotate
-diodonfrost.mariadb
-diodonfrost.ssh_hardening
+diodonfrost.vagrant
+diodonfrost.packer
+diodonfrost.terraform

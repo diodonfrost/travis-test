@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --
 dist: xenial
 language: ruby
@@ -63,26 +62,5 @@ script:
   - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-galaxy install -r /tmp/requirement.yml'
   # Test role
   - 'inspec exec tests/inspec -t docker://$(cat ${container_id})'
-
   # Docker ps
-- 'docker ps -a'
-=======
-dist: xenial   # required for Python >= 3.7
-language: python
-python:
-  - "3.7"
-
-env:
-  - distribution: solaris
-    version: "10"
-    minor: "11"
-
-install:
-  # Install the latest version of Packer with ansible
-  - sudo pip install ansible
-  - sudo ansible-galaxy install git+https://github.com/diodonfrost/ansible-role-packer
-  - sudo ansible-pull -U https://github.com/diodonfrost/ansible-role-packer tests/test.yml
-
-before_script:
-  - packer --version
->>>>>>> f733a6929be8f1e90d69491944fd09320b6452c4
+  - 'docker ps -a'

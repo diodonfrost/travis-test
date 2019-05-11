@@ -1,5 +1,5 @@
-diodonfrost.puppet_agent
-diodonfrost.java
-diodonfrost.vagrant
-diodonfrost.packer
-diodonfrost.terraform
+- src: diodonfrost.puppet_agent
+- src: diodonfrost.java
+- src: diodonfrost.vagrant
+- src: diodonfrost.packer
+- src: diodonfrost.terraform

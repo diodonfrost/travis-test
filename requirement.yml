@@ -3,3 +3,4 @@
 - src: diodonfrost.vagrant
 - src: diodonfrost.packer
 - src: diodonfrost.terraform
+- src: diodonfrost.amazon-ssm

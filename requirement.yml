@@ -1,6 +1,0 @@
-- src: diodonfrost.puppet_agent
-- src: diodonfrost.java
-- src: diodonfrost.vagrant
-- src: diodonfrost.packer
-- src: diodonfrost.terraform
-- src: diodonfrost.amazon_ssm

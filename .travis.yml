@@ -2,176 +2,179 @@
 services:
   - docker
 
+env:
+#-----------------------------------------------
+#
+# CentOS
+#
+#-----------------------------------------------
+  - distribution: centos
+    version: "7"
+    playbook: terraform-latest
+  - distribution: centos
+    version: "6"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Fedora
+#
+#--------------------------------
+  - distribution: fedora
+    version: "27"
+    playbook: terraform-latest
+  - distribution: fedora
+    version: "26"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Ubuntu
+#
+#--------------------------------
+  - distribution: ubuntu
+    version: "19.04"
+    playbook: terraform-latest
+  - distribution: ubuntu
+    version: "18.04"
+    playbook: terraform-latest
+  - distribution: ubuntu
+    version: "16.04"
+    playbook: terraform-latest
+  - distribution: ubuntu
+    version: "14.04"
+    playbook: terraform-latest
+  - distribution: ubuntu
+    version: "12.04"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Debian
+#
+#--------------------------------
+  - distribution: debian
+    version: "9"
+    playbook: terraform-latest
+  - distribution: debian
+    version: "8"
+    playbook: terraform-latest
+  - distribution: debian
+    version: "7"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Oraclelinux
+#
+#--------------------------------
+  - distribution: oraclelinux
+    version: "7"
+    playbook: terraform-latest
+  - distribution: oraclelinux
+    version: "6"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Amazonlinux
+#
+#--------------------------------
+  - distribution: amazonlinux
+    version: "2"
+    playbook: terraform-latest
+  - distribution: amazonlinux
+    version: "1"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Opensuse
+#
+#--------------------------------
+  - distribution: opensuse
+    version: "15.1"
+    playbook: terraform-latest
+  - distribution: opensuse
+    version: "15"
+    playbook: terraform-latest
+  - distribution: opensuse
+    version: "42.3"
+    playbook: terraform-latest
+  - distribution: opensuse
+    version: "42.2"
+    playbook: terraform-latest
+  - distribution: opensuse
+    version: "13.2"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Archlinux
+#
+#--------------------------------
+  - distribution: archlinux
+    version: "rolling"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Alpine
+#
+#--------------------------------
+  - distribution: alpine
+    version: "rolling"
+    playbook: terraform-latest
+
+#--------------------------------
+#
+# Ansible
+#
+#--------------------------------
+  - ansible_version: "2.0"
+  - ansible_version: "2.1"
+  - ansible_version: "2.2"
+  - ansible_version: "2.3"
+  - ansible_version: "2.4"
+  - ansible_version: "2.5"
+  - ansible_version: "2.6"
+  - ansible_version: "2.7"
+  - ansible_version: "2.8"
+
+before_script:
+  # Build docker container
+  - 'sudo docker pull diodonfrost/${distribution}-${version}-ansible:latest'
+
+script:
+  - container_id=$(mktemp)
+
+  # Run container and mount ansible role with it
+  - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/ansible-role-terraform:ro diodonfrost/${distribution}-${version}-ansible:latest > "${container_id}"'
+
+  # Check syntax
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml --syntax-check'
+
+  # Run ansible playbook
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml'
+
+  # Test indempotence
+  - >
+    sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+  # Test role
+  - 'inspec exec tests/inspec -t docker://$(cat ${container_id})'
+
+  # Delete container
+  - 'sudo docker rm -f "$(cat ${container_id})"'
+
 jobs:
   include:
-    - stage: OS platforms tests
-      env:
-      #-----------------------------------------------
-      #
-      # CentOS
-      #
-      #-----------------------------------------------
-        - distribution: centos
-          version: "7"
-          playbook: terraform-latest
-        - distribution: centos
-          version: "6"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Fedora
-      #
-      #--------------------------------
-        - distribution: fedora
-          version: "27"
-          playbook: terraform-latest
-        - distribution: fedora
-          version: "26"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Ubuntu
-      #
-      #--------------------------------
-        - distribution: ubuntu
-          version: "19.04"
-          playbook: terraform-latest
-        - distribution: ubuntu
-          version: "18.04"
-          playbook: terraform-latest
-        - distribution: ubuntu
-          version: "16.04"
-          playbook: terraform-latest
-        - distribution: ubuntu
-          version: "14.04"
-          playbook: terraform-latest
-        - distribution: ubuntu
-          version: "12.04"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Debian
-      #
-      #--------------------------------
-        - distribution: debian
-          version: "9"
-          playbook: terraform-latest
-        - distribution: debian
-          version: "8"
-          playbook: terraform-latest
-        - distribution: debian
-          version: "7"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Oraclelinux
-      #
-      #--------------------------------
-        - distribution: oraclelinux
-          version: "7"
-          playbook: terraform-latest
-        - distribution: oraclelinux
-          version: "6"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Amazonlinux
-      #
-      #--------------------------------
-        - distribution: amazonlinux
-          version: "2"
-          playbook: terraform-latest
-        - distribution: amazonlinux
-          version: "1"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Opensuse
-      #
-      #--------------------------------
-        - distribution: opensuse
-          version: "15.1"
-          playbook: terraform-latest
-        - distribution: opensuse
-          version: "15"
-          playbook: terraform-latest
-        - distribution: opensuse
-          version: "42.3"
-          playbook: terraform-latest
-        - distribution: opensuse
-          version: "42.2"
-          playbook: terraform-latest
-        - distribution: opensuse
-          version: "13.2"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Archlinux
-      #
-      #--------------------------------
-        - distribution: archlinux
-          version: "rolling"
-          playbook: terraform-latest
-
-      #--------------------------------
-      #
-      # Alpine
-      #
-      #--------------------------------
-        - distribution: alpine
-          version: "rolling"
-          playbook: terraform-latest
-
+    - stage: Test Ansible versions
       before_script:
-        # Retrieve docker container
-        - 'sudo docker pull diodonfrost/${distribution}-${version}-ansible:latest'
-
-      script:
-        - container_id=$(mktemp)
-
-        # Run container and mount ansible role with it
-        - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/ansible-role-terraform:ro diodonfrost/${distribution}-${version}-ansible:latest > "${container_id}"'
-
-        # Check syntax
-        - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml --syntax-check'
-
-        # Run ansible playbook
-        - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml'
-
-        # Test indempotence
-        - >
-          sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/ansible-role-terraform/tests/playbooks/${playbook}.yml
-          | grep -q 'changed=0.*failed=0'
-          && (echo 'Idempotence test: pass' && exit 0)
-          || (echo 'Idempotence test: fail' && exit 1)
-
-        # Test role
-        - 'inspec exec tests/inspec -t docker://$(cat ${container_id})'
-
-        # Delete container
-        - 'sudo docker rm -f "$(cat ${container_id})"'
-
-    - stage: Ansible versions tests
-      env:
-        - ansible_version: "2.0"
-        - ansible_version: "2.1"
-        - ansible_version: "2.2"
-        - ansible_version: "2.3"
-        - ansible_version: "2.4"
-        - ansible_version: "2.5"
-        - ansible_version: "2.6"
-        - ansible_version: "2.7"
-        - ansible_version: "2.8"
-
-      before_script:
-        # Retrieve docker container
+        # Build docker container
         - 'sudo docker pull diodonfrost/ansible-release:${ansible_version}'
 
       script:
@@ -192,6 +195,7 @@ jobs:
           | grep -q 'changed=0.*failed=0'
           && (echo 'Idempotence test: pass' && exit 0)
           || (echo 'Idempotence test: fail' && exit 1)
+
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

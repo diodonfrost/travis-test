@@ -1,0 +1,7 @@
+---
+- name: diodonfrost.puppet_agent
+- name: diodonfrost.logrotate
+- name: diodonfrost.bacula
+- name: diodonfrost.packer
+- name: diodonfrost.ssh_hardening
+- name: diodonfrost.terragrunt

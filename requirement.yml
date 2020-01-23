@@ -1,6 +1,6 @@
 ---
 - name: diodonfrost.logrotate
-- name: diodonfrost.bacula
+- name: diodonfrost.bacula_client
 - name: diodonfrost.packer
 - name: diodonfrost.python
 - name: diodonfrost.amazon_codedeploy

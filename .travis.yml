@@ -54,7 +54,7 @@ env:
     version: "rolling"
 
 before_install:
-  - 'apt-get update && apt-get install ansible'
+  - 'sudo apt-get update && sudo apt-get install ansible'
 script:
   - 'sudo ansible-galaxy install -r requirement.yml'
   - container_id=$(mktemp)

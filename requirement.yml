@@ -1,7 +1,7 @@
 ---
-- name: diodonfrost.puppet_agent
 - name: diodonfrost.logrotate
 - name: diodonfrost.bacula
 - name: diodonfrost.packer
-- name: diodonfrost.ssh_hardening
-- name: diodonfrost.terragrunt
+- name: diodonfrost.python
+- name: diodonfrost.amazon_codedeploy
+- name: diodonfrost.amazon_cloudwatch

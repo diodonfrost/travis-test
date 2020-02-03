@@ -5,3 +5,5 @@
 - name: diodonfrost.python
 - name: diodonfrost.amazon_codedeploy
 - name: diodonfrost.amazon_cloudwatch
+- name: diodonfrost.mariadb
+
